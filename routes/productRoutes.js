@@ -57,5 +57,4 @@ productRoutes.get("/search/:keyword", searchProductController);
 //   requireSignIn,
 //   brainTreePaymentController
 // );
-
 export default productRoutes;

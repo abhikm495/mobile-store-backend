@@ -5,7 +5,6 @@ import slugify from "slugify";
 // import braintree from "braintree";
 import dotenv from "dotenv";
 
-
 dotenv.config();
 
 //payment gateway
@@ -68,10 +67,11 @@ export const getProductController = async (req, res) => {
       .select("-photo")
       .limit(12)
       .sort({ createdAt: -1 });
+
     res.status(200).send({
       success: true,
       TotalProducts: products.length,
-      products,
+      products: products,
     });
   } catch (error) {
     console.log(error);
@@ -244,7 +244,7 @@ export const productCountController = async (req, res) => {
 export const productListController = async (req, res) => {
   try {
     const perPage = 6;
-    const page = req.params.page ? req.params.page : 1;
+    const page = req?.params?.page ? req?.params?.page : 1;
     const products = await productModel
       .find({})
       .select("-photo")
